@@ -1,29 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data;
-using PatientPortalApplication.Models;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using Mock_EMR_Software.Models;
+using Microsoft.EntityFrameworkCore;
 
 
-namespace PatientPortalApplication.DAL
+
+namespace Mock_EMR_Software.DAL
 {
     public class Context: DbContext
     {
-        public Context() : base("Context")
+
+        public Context(DbContextOptions<Context> options) : base(options)
         {
         }
 
         public DbSet<Patient> Patients { get; set; }
-        public DbSet<Comments> Comments { get; set; }
+        public DbSet<Documents> Comments { get; set; }
 
-        public DbSet<Prescrips> Prescrips { get; set; }
+        public DbSet<Orders> Orders { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Patient>().ToTable("Patient");
+            modelBuilder.Entity<Documents>().ToTable("Comments");
+            modelBuilder.Entity<Contacts>().ToTable("Contact Info");
+            modelBuilder.Entity<Orders>().ToTable("Orders");
+            modelBuilder.Entity<Addresses>().ToTable("Addresses");
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 

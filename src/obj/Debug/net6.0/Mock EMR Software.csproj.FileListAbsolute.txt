@@ -1,0 +1,14 @@
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\PatientPortalApplication.Migrations.InitialCreate.resources
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\PatientPortalApplication.Migrations.Initial.resources
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\PatientPortalApplication.Migrations.TestMigration.resources
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\PatientPortalApplication.Migrations.IdkBruh.resources
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\PatientPortalApplication.Migrations.third.resources
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\PatientPortalApplication.Migrations.fourth.resources
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.csproj.GenerateResource.cache
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.AssemblyInfoInputs.cache
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.AssemblyInfo.cs
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.csproj.CoreCompileInputs.cache
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.RazorAssemblyInfo.cache
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.RazorAssemblyInfo.cs

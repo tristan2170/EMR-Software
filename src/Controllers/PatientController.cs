@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using PatientPortalApplication.DAL;
-using PatientPortalApplication.Models;
-using PatientPortalApplication.ViewModel;
+﻿using System.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Mock_EMR_Software.DAL;
+using Mock_EMR_Software.Models;
+using Mock_EMR_Software.ViewModel;
 
 
-namespace PatientPortalApplication.Controllers
+namespace Mock_EMR_Software.Controllers
 {
     public class PatientController : Controller
     {
-        private Context db = new Context();
-        
+        private readonly Context _dbContext;
+
+        public PatientController(Context dbContext)
+        {
+            _dbContext = dbContext;    
+        }
+
 
         // GET: Patient
         public ActionResult Index()
         {
-            return View(db.Patients.ToList());
+            return View(_dbContext.Patients.ToList());
         }
 
         // GET: Patient/Details/5
@@ -30,27 +30,28 @@ namespace PatientPortalApplication.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
-            Patient patient = db.Patients
-                .Include(a => a.Comments)
-                .Include(b => b.Prescrips)
+
+            Patient patient = _dbContext.Patients
+                .Include(a => a.Documents)
+                .Include(b => b.Orders)
                 .Include(c => c.Patients)
-                .Where(a => a.patientId == id)
-                .Where(b => b.patientId == id)
-                .Where(c => c.patientId == id)
-                .SingleOrDefault();
+                .Where(a => a.patientGUID == id)
+                .Where(b => b.patientGUID == id)
+                .Where(c => c.patientGUID == id)
+                .FirstOrDefault();
                 
                 
             if (patient == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             var view = new DetailView
             {
-                Comments = patient.Comments.ToList(),
-                Prescrips = patient.Prescrips.ToList(),
+                Documents = patient.Comments.ToList(),
+                Orders = patient.Orders.ToList(),
                 Patients = patient.Patients.ToList()
             };
         
@@ -70,12 +71,12 @@ namespace PatientPortalApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,first_name,last_name,date_admitted")] Patient patient)
+        public ActionResult Create([Bind("Id,first_name,last_name,date_admitted")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.Patients.Add(patient);
-                db.SaveChanges();
+                _dbContext.Patients.Add(patient);
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -87,12 +88,14 @@ namespace PatientPortalApplication.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
-            Patient patient = db.Patients.Find(id);
+
+            Patient patient = _dbContext.Patients.Find(id);
+
             if (patient == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(patient);
         }
@@ -102,12 +105,12 @@ namespace PatientPortalApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,first_name,last_name,date_admitted")] Patient patient)
+        public ActionResult Edit([Bind("Id,first_name,last_name,date_admitted")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(patient).State = EntityState.Modified;
-                db.SaveChanges();
+                _dbContext.Update(patient);
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(patient);
@@ -118,12 +121,12 @@ namespace PatientPortalApplication.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
-            Patient patient = db.Patients.Find(id);
+            Patient patient = _dbContext.Patients.Find(id);
             if (patient == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(patient);
         }
@@ -133,9 +136,9 @@ namespace PatientPortalApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Patient patient = db.Patients.Find(id);
-            db.Patients.Remove(patient);
-            db.SaveChanges();
+            Patient patient = _dbContext.Patients.Find(id);
+            _dbContext.Patients.Remove(patient);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -143,7 +146,7 @@ namespace PatientPortalApplication.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _dbContext.Dispose();
             }
             base.Dispose(disposing);
         }

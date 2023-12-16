@@ -2,36 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PatientPortalApplication.Models;
+using Mock_EMR_Software.Models;
 using System.Runtime;
 
-namespace PatientPortalApplication.ViewModel
+namespace Mock_EMR_Software.ViewModel
 {
     public class DetailView
     {
 
         //Patient
-        public int patientId { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public DateTime date_admitted { get; set; }
+        public int patientGUID { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public DateTime dateAdmitted { get; set; }
+        public DateTime dateDischarged { get; set; }
         public List<Patient> Patients { get; set; }
 
 
-        //Prescrips
-        public int prescripId { get; set; }
-        public string prescriptions { get; set; }
+        //Orders
+        public int orderGUID { get; set; }
+        public string orderName { get; set; }
 
-        public List<Prescrips> Prescrips { get; set; }
+        public List<Orders> Orders { get; set; }
         
 
 
-        //Comments
-        public int commentId { get; set; }
-        public string comment { get; set; }
+        //Documents
+        public int documentGUID { get; set; }
 
-        public DateTime date { get; set; }
-        public List<Comments> Comments { get; set; }
+        public string documentName { get; set; }
+        public string Body { get; set; }
+
+        public DateTime Date { get; set; }
+        public List<Documents> Documents { get; set; }
 
 
         

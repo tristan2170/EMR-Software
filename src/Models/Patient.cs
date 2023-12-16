@@ -4,32 +4,39 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 
-namespace PatientPortalApplication.Models
+namespace Mock_EMR_Software.Models
 {
-    [Table("patient")]
+    [Table("Patient")]
     public class Patient
     {
         
             [Key]
-            [Column("Patient Id")]
-            public int patientId { get; set; }
+            [Column("Patient GUID")]
+            public int patientGUID { get; set; }
 
             [Column("First Name")]
-            public string first_name { get; set; }
+            public string firstName { get; set; }
 
             [Column("Last Name")]
-            public string last_name { get; set; }
+            public string lastName { get; set; }
             
             [Column("Date Admitted", TypeName = "DateTime")]
-            public DateTime date_admitted { get; set; }
+            public DateTime dateAdmitted { get; set; }
+
+            [Column("Date Discharged", TypeName = "DateTime")]
+            public DateTime dateDischarged { get; set; }
 
 
             
-            public virtual ICollection<Comments> Comments { get; set; } 
-            public virtual ICollection<Prescrips> Prescrips { get; set; }
+            public virtual ICollection<Documents> Documents { get; set; } 
+            public virtual ICollection<Orders> Orders { get; set; }
             public virtual ICollection<Patient> Patients { get; set; }
+            public virtual ICollection<Contacts> Contacts { get; set; }
+            public virtual ICollection<Addresses> Addresss { get; set; }
+
         
     }
 }
