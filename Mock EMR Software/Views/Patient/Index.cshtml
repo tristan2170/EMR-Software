@@ -31,17 +31,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.first_name)
+            @Html.DisplayFor(modelItem => item.firstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.last_name)
+            @Html.DisplayFor(modelItem => item.lastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.date_admitted)
+            @Html.DisplayFor(modelItem => item.dateAdmitted)
         </td>
         <td>
-            
-            @Html.ActionLink("Details", "Details", new { id=item.patientId }) 
+            @Html.ActionLink("Details", "Details", new { id=item.patientGUID }) 
         </td>
     </tr>
 }
