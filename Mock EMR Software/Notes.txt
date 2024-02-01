@@ -1,0 +1,4 @@
+﻿Need Order Entry Form 
+Document Entry Form 
+
+Likely will do that in details page of patient

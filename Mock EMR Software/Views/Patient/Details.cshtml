@@ -33,8 +33,7 @@
 <h2>Details</h2>
 
 <p>
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Edit", "Edit", new { id = Model.patientId })
+    @Html.ActionLink("Back to List", "Index")
 </p>
 <br />
 
@@ -42,14 +41,13 @@
     <h4>Patient</h4>
     <!--Discharge Button-->
     <div class="discharge-link" style="font-size: 25px; text-align:center;">
-        @Html.ActionLink("Discharge", "Delete", new { id = Model.patientId }, new { @class = "discharge-link"})
+        @Html.ActionLink("Discharge", "Delete", new { id = Model.patientGUID }, new { @class = "discharge-link"})
     </div>
     <br />
     <hr />
 
 
     <dl class="dl-horizontal">
-        <!--Come back later to fix-->
         @foreach (var item in Model.Patients)
         {
             <dt>
@@ -57,7 +55,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(modelItem => item.first_name)
+                @Html.DisplayFor(modelItem => item.firstName)
             </dd>
 
             <dt>
@@ -65,7 +63,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(modelItem => item.last_name)
+                @Html.DisplayFor(modelItem => item.lastName)
 
             </dd>
 
@@ -74,7 +72,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(modelItem => item.date_admitted)
+                @Html.DisplayFor(modelItem => item.dateAdmitted)
             </dd>
         }
     </dl>
@@ -82,40 +80,35 @@
 
 
 
-
-<!--Prescrips-->
-<h4>Prescriptions</h4>
+<h4>Orders</h4>
 <p>
-    @Html.ActionLink("Add prescription", "Create", "Prescrip", null, null)
+    @Html.ActionLink("Add prescription", "Create", "Order", null, null)
 </p>
 
 <table class="table">
     <tr>
         <th>
-            Prescription
+            Orders
         </th>
-
-        <th></th>
     </tr>
 
-    @foreach (var item in Model.Prescrips)
+    @foreach (var item in Model.Orders)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.prescriptions)
+                @Html.DisplayFor(modelItem => item.orderName)
             </td>
         </tr>
-
     }
 
 </table>
 
 <br />
 
-<!--Comments Table Here-->
-<h4>Comments</h4>
+<!--Documents Table Here-->
+<h4>Documents</h4>
 <p>
-    @Html.ActionLink("Add comment", "Create", "Comment", new { id = Model.patientId }, null)
+    @Html.ActionLink("Add Document", "Create", "Document", new { id = Model.patientGUID }, null)
 </p>
 
 <table class="table">
@@ -129,15 +122,14 @@
 
         <th></th>
     </tr>
-    @foreach (var item in Model.Comments)
+    @foreach (var item in Model.Documents)
     {
 
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.date)</td>
-
-            <td>@Html.DisplayFor(modelItem => item.comment)</td>
+            <td>@Html.DisplayFor(modelItem => item.documentName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Date)</td>
+            <td>@Html.DisplayFor(modelItem => item.Body)</td>
         </tr>
-
 
     }
 </table>

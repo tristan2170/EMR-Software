@@ -1,0 +1,64 @@
+{
+  "DocumentTypes": [
+    {
+      "Name": "EncounterNotes",
+      "Description": "Capture details of a patient's visit to a healthcare provider."
+    },
+    {
+      "Name": "ProgressNotes",
+      "Description": "Document ongoing progress of a patient's condition."
+    },
+    {
+      "Name": "HistoryAndPhysical",
+      "Description": "Detailed account of a patient's medical history and physical examination."
+    },
+    {
+      "Name": "MedicationAdministrationRecord",
+      "Description": "Document administration of medications to a patient."
+    },
+    {
+      "Name": "AllergyDocumentation",
+      "Description": "Record information about a patient's allergies and adverse reactions."
+    },
+    {
+      "Name": "ImmunizationRecords",
+      "Description": "Track a patient's vaccination history."
+    },
+    {
+      "Name": "DiagnosticReports",
+      "Description": "Store diagnostic results like laboratory tests, radiology reports, etc."
+    },
+    {
+      "Name": "ConsentForms",
+      "Description": "Document patient consent for medical procedures, treatments, or research."
+    },
+    {
+      "Name": "DischargeSummaries",
+      "Description": "Capture information about a patient's condition and care plan upon discharge."
+    },
+    {
+      "Name": "OperativeNotes",
+      "Description": "Document details of surgical procedures performed on a patient."
+    },
+    {
+      "Name": "ReferralDocumentation",
+      "Description": "Record information about patient referrals to specialists or other providers."
+    },
+    {
+      "Name": "NursingNotes",
+      "Description": "Document the care provided by nurses, including assessments and interventions."
+    },
+    {
+      "Name": "CarePlans",
+      "Description": "Outline the individualized approach to patient care."
+    },
+    {
+      "Name": "SocialDeterminantsOfHealthAssessments",
+      "Description": "Document social and environmental factors impacting a patient's health."
+    },
+    {
+      "Name": "RehabilitationNotes",
+      "Description": "Capture information related to a patient's rehabilitation or physical therapy sessions."
+    }
+  ]
+}
