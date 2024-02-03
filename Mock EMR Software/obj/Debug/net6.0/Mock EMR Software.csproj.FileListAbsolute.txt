@@ -12,3 +12,4 @@ C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0
 C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.RazorAssemblyInfo.cache
 C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.RazorAssemblyInfo.cs
+C:\Users\Owner\source\repos\Mock EMR Software\Mock EMR Software\obj\Debug\net6.0\Mock EMR Software.csproj.AssemblyReference.cache

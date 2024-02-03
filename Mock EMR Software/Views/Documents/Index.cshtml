@@ -13,12 +13,13 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Patient.firstName)
+            @Html.DisplayNameFor(model => model.Patient.lastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.comment)
+            @Html.DisplayNameFor(model => model.Body)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th></th>
     </tr>
@@ -27,17 +28,13 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Patient.firstName)
+            @Html.DisplayFor(modeItem => item.Patient.lastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.comment)
+            @Html.DisplayFor(modelItem => item.Body)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.commentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.commentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.commentId })
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
     </tr>
 }

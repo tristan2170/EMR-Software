@@ -19,7 +19,7 @@ namespace Mock_EMR_Software.Controllers
 
 
         // GET: Patient
-        public ActionResult Index()
+        public ActionResult PatientList()
         {
             return View(_dbContext.Patients.ToList());
         }
@@ -50,7 +50,7 @@ namespace Mock_EMR_Software.Controllers
 
             var view = new DetailView
             {
-                Documents = patient.Comments.ToList(),
+                Documents = patient.Documents.ToList(),
                 Orders = patient.Orders.ToList(),
                 Patients = patient.Patients.ToList()
             };
@@ -61,17 +61,15 @@ namespace Mock_EMR_Software.Controllers
        
 
         // GET: Patient/Create
-        public ActionResult Create()
+        public ActionResult Admit()
         {
             return View();
         }
 
-        // POST: Patient/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("Id,first_name,last_name,date_admitted")] Patient patient)
+        public ActionResult Admit([Bind("patientGUID, firstName, lastName,dateAdmitted")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -100,12 +98,10 @@ namespace Mock_EMR_Software.Controllers
             return View(patient);
         }
 
-        // POST: Patient/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind("Id,first_name,last_name,date_admitted")] Patient patient)
+        public ActionResult Edit([Bind("patientGUID, firstName, lastName, dateAdmitted")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +113,7 @@ namespace Mock_EMR_Software.Controllers
         }
 
         // GET: Patient/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Discharge(int? id)
         {
             if (id == null)
             {
@@ -132,7 +128,7 @@ namespace Mock_EMR_Software.Controllers
         }
 
         // POST: Patient/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Discharge")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
