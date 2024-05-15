@@ -19,11 +19,11 @@ namespace Mock_EMR_Software.Controllers
         // GET: Comment
         public ActionResult Index() 
         {
-            var documents = _dbContext.Comments.Include(c => c.Patient);
+            var documents = _dbContext.Documents.Include(c => c.Patient);
             return View(documents.ToList());
         }
 
-        // Handles the detailed info of a patient (?)
+        // Detailed info on the instance of this order
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -31,7 +31,7 @@ namespace Mock_EMR_Software.Controllers
                 return BadRequest();
             }
 
-            var documents = await _dbContext.Comments.FirstOrDefaultAsync(m => m.patientGUID == id);
+            var documents = await _dbContext.Documents.FirstOrDefaultAsync(c => c.patientGUID == id);
                     
             if (documents == null)
             {   
@@ -41,9 +41,14 @@ namespace Mock_EMR_Software.Controllers
         }
 
         // GET: Comment/Create
-        public async Task<ActionResult> Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.patientId = new SelectList(_dbContext.Patients, "patientGUID", "firstName");
+
+            List<string> document_list = DocumentReader.main();
+
+            ViewBag.AvailableDocuments = new SelectList(document_list);
+            ViewBag.CurrentDateTime = DateTime.Now;
+            ViewBag.patientGUID = id;
             //Redirect to the Patient Details page
             return View();
         }
@@ -51,24 +56,19 @@ namespace Mock_EMR_Software.Controllers
         // POST: Comment/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind("documentGUID, Body, Date, patientGUID")] Documents documents)
+        public ActionResult Create([Bind("documentGUID, documentName, Body, Date, patientGUID")] Documents document)
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Comments.Add(documents);
+                _dbContext.Documents.Add(document);
                 _dbContext.SaveChanges();
                 //Redirect to the Patient Details page
-                return this.RedirectToAction("Index", "Patient", new { area = "" });
+                return RedirectToAction("Index", "Patient", new { area = "" });
             }
 
-            ViewBag.patientId = new SelectList(_dbContext.Patients, "patientGUID", "firstName", documents.patientGUID);
-            return View(documents);
+            return View(document);
 
         }
-
-
-
-        
 
         protected override void Dispose(bool disposing)
         {
@@ -78,5 +78,7 @@ namespace Mock_EMR_Software.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

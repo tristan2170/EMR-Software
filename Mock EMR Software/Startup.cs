@@ -17,7 +17,7 @@ namespace Mock_EMR_Software
             // Configure DbContext
             services.AddDbContext<Context>(options =>
             {
-                options.UseSqlServer(_configuration.GetConnectionString("YourDatabaseConnection"));
+                options.UseSqlServer(_configuration.GetConnectionString("DatabaseConnection"));
             });
 
             // Other services configuration...

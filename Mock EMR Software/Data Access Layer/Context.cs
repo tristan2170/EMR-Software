@@ -13,14 +13,14 @@ namespace Mock_EMR_Software.DAL
         }
 
         public DbSet<Patient> Patients { get; set; }
-        public DbSet<Documents> Comments { get; set; }
+        public DbSet<Documents> Documents { get; set; }
 
         public DbSet<Orders> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Patient>().ToTable("Patient");
-            modelBuilder.Entity<Documents>().ToTable("Comments");
+            modelBuilder.Entity<Documents>().ToTable("Documents");
             modelBuilder.Entity<Contacts>().ToTable("Contact Info");
             modelBuilder.Entity<Orders>().ToTable("Orders");
             modelBuilder.Entity<Addresses>().ToTable("Addresses");

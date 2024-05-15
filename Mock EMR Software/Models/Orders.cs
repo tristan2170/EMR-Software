@@ -26,10 +26,10 @@ namespace Mock_EMR_Software.Models
         public string Provider { get; set; }
 
         [Column("Date Ordered")]
-        public DateTime dateOrdered { get; set; }
+        public DateTime DateOrdered { get; set; }
 
         [Column("Date Discontinued")]
-        public DateTime dateDiscontinued { get; set; }
+        public DateTime DateDiscontinued { get; set; }
 
         [Column("Frequency")]
         public string Frequency { get; set; }

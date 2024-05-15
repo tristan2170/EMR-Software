@@ -82,7 +82,7 @@
 
 <h4>Orders</h4>
 <p>
-    @Html.ActionLink("Create Order", "Create", "Order", null, null)
+    @Html.ActionLink("Create Order", "Create", "Order", new { id = Model.patientGUID }, null)
 </p>
 
 <table class="table">

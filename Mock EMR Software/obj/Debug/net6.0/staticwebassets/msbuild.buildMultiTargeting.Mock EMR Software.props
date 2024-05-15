@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Mock EMR Software.props" />
+</Project>

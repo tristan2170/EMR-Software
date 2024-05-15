@@ -40,16 +40,20 @@ namespace Mock_EMR_Software.Controllers
         }
 
         // GET: Order/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.patientGUID = new SelectList(_dbContext.Patients, "patientGUID", "firstName");
+            List<string> JsonOrderList = OrderReader.main();
+            ViewBag.AvailableOrders = new SelectList(JsonOrderList);
+            ViewBag.CurrentDateTime = DateTime.Now;
+            ViewBag.patientGUID = id;
+
             return View();
         }
 
-        // POST: Prescrip/Create
+        // POST: Order/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("orderGUID, Orders, patientGUID")] Orders order)
+        public ActionResult Create([Bind("orderName, Frequency, DateOrdered, patientGUID")] Orders order)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +62,6 @@ namespace Mock_EMR_Software.Controllers
                 return RedirectToAction("Index", "Patient", new { area = "" });
             }
 
-            ViewBag.patientGUID = new SelectList(_dbContext.Patients, "patientGUID", "firstName", order.patientGUID);
             return View(order);
         }
 
