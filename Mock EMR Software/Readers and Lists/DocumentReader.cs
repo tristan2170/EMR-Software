@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Mock_EMR_Software.CustomExceptions;
+using Newtonsoft.Json.Linq;
 using System.Reflection.Metadata;
 
 namespace Mock_EMR_Software
@@ -7,28 +8,25 @@ namespace Mock_EMR_Software
     {
         public static List<string> main()
         {
-            List<string> document_list = new List<string>();
-
-            string filePath = "Documents.json";
-            string jsonContent = File.ReadAllText(filePath);
-
-            JArray jsonArray = JArray.Parse(jsonContent);
             
-            if (jsonArray is not null)
+            string file_path = "Documents.json";
+
+            if (!File.Exists(file_path))
             {
-                foreach (JObject obj in jsonArray)
-                {
-                    if (obj is not null && obj["name"] is not null)
-                    {
-                        string doc_name = obj["name"].ToString();
-                        document_list.Add(doc_name);
-                    }
-
-                }
+                throw new FileNotFoundException($"The file {file_path} does not exist.");
             }
-            
 
-            return document_list;
+            string json_content = File.ReadAllText(file_path);
+            JObject json_obj = JObject.Parse(json_content);
+
+            if (json_obj["DocumentTypes"] is JArray docs_array)
+            {
+                List<string> docs_list = docs_array.ToObject<List<string>>() ?? new List<string>();
+                return docs_list;
+            }
+
+            throw new NullJsonObjectException("JSON Array is Empty and/or Invalid");
+
         }
     }
 }
